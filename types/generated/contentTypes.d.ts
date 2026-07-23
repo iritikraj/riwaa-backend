@@ -505,6 +505,70 @@ export interface ApiCompetitorAuditCompetitorAudit
   };
 }
 
+export interface ApiComplianceAuditComplianceAudit
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'compliance_audits';
+  info: {
+    displayName: 'Compliance Audit';
+    pluralName: 'compliance-audits';
+    singularName: 'compliance-audit';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    audit_status: Schema.Attribute.Enumeration<
+      ['pending', 'processing', 'completed', 'failed']
+    > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    brief_file: Schema.Attribute.Media<'files'> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::compliance-audit.compliance-audit'
+    >;
+    overall_score: Schema.Attribute.Integer &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    publishedAt: Schema.Attribute.DateTime;
+    report_data: Schema.Attribute.JSON &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    target_url: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiWebsiteAuditWebsiteAudit
   extends Struct.CollectionTypeSchema {
   collectionName: 'website_audits';
@@ -1075,6 +1139,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
       'api::competitor-audit.competitor-audit': ApiCompetitorAuditCompetitorAudit;
+      'api::compliance-audit.compliance-audit': ApiComplianceAuditComplianceAudit;
       'api::website-audit.website-audit': ApiWebsiteAuditWebsiteAudit;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
