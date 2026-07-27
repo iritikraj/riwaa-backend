@@ -523,7 +523,15 @@ export interface ApiComplianceAuditComplianceAudit
   };
   attributes: {
     audit_status: Schema.Attribute.Enumeration<
-      ['pending', 'processing', 'completed', 'failed']
+      [
+        'pending',
+        'processing',
+        'downloading_brief',
+        'scraping_live_url',
+        'running_ai_analysis',
+        'completed',
+        'failed',
+      ]
     > &
       Schema.Attribute.SetPluginOptions<{
         i18n: {

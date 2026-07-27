@@ -33,6 +33,9 @@
       "enum": [
         "pending",
         "processing",
+        "downloading_brief",
+        "scraping_live_url",
+        "running_ai_analysis",
         "completed",
         "failed"
       ]
