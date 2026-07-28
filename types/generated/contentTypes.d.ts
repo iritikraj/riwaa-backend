@@ -577,6 +577,67 @@ export interface ApiComplianceAuditComplianceAudit
   };
 }
 
+export interface ApiLeadFormLeadForm extends Struct.CollectionTypeSchema {
+  collectionName: 'lead_forms';
+  info: {
+    displayName: 'Lead Form';
+    pluralName: 'lead-forms';
+    singularName: 'lead-form';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    country_code: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    email: Schema.Attribute.Email &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    enquiry_details: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::lead-form.lead-form'
+    >;
+    name: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    phone: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiWebsiteAuditWebsiteAudit
   extends Struct.CollectionTypeSchema {
   collectionName: 'website_audits';
@@ -1148,6 +1209,7 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::competitor-audit.competitor-audit': ApiCompetitorAuditCompetitorAudit;
       'api::compliance-audit.compliance-audit': ApiComplianceAuditComplianceAudit;
+      'api::lead-form.lead-form': ApiLeadFormLeadForm;
       'api::website-audit.website-audit': ApiWebsiteAuditWebsiteAudit;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
