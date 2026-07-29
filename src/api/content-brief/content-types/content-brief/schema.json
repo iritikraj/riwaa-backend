@@ -1,0 +1,82 @@
+{
+  "kind": "collectionType",
+  "collectionName": "content_briefs",
+  "info": {
+    "singularName": "content-brief",
+    "pluralName": "content-briefs",
+    "displayName": "Content Brief"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {
+    "i18n": {
+      "localized": true
+    }
+  },
+  "attributes": {
+    "topic": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "url_pattern": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "internal_blueprint_url": {
+      "type": "string",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "reference_urls": {
+      "type": "json",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "audit_status": {
+      "type": "enumeration",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "enum": [
+        "pending",
+        "processing",
+        "extracting_entities",
+        "scraping_competitors",
+        "fetching_keywords",
+        "generating_ai_brief",
+        "completed",
+        "failed"
+      ]
+    },
+    "generated_data": {
+      "type": "json",
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
+    "page_type_rule": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::page-type-rule.page-type-rule"
+    }
+  }
+}

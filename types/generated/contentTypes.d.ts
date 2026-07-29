@@ -577,6 +577,89 @@ export interface ApiComplianceAuditComplianceAudit
   };
 }
 
+export interface ApiContentBriefContentBrief
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'content_briefs';
+  info: {
+    displayName: 'Content Brief';
+    pluralName: 'content-briefs';
+    singularName: 'content-brief';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    audit_status: Schema.Attribute.Enumeration<
+      [
+        'pending',
+        'processing',
+        'extracting_entities',
+        'scraping_competitors',
+        'fetching_keywords',
+        'generating_ai_brief',
+        'completed',
+        'failed',
+      ]
+    > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    generated_data: Schema.Attribute.JSON &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    internal_blueprint_url: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::content-brief.content-brief'
+    >;
+    page_type_rule: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::page-type-rule.page-type-rule'
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    reference_urls: Schema.Attribute.JSON &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    topic: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    url_pattern: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+  };
+}
+
 export interface ApiLeadFormLeadForm extends Struct.CollectionTypeSchema {
   collectionName: 'lead_forms';
   info: {
@@ -632,6 +715,68 @@ export interface ApiLeadFormLeadForm extends Struct.CollectionTypeSchema {
         };
       }>;
     publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiPageTypeRulePageTypeRule
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'page_type_rules';
+  info: {
+    displayName: 'Page Type Rule';
+    pluralName: 'page-type-rules';
+    singularName: 'page-type-rule';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::page-type-rule.page-type-rule'
+    >;
+    name: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    publishedAt: Schema.Attribute.DateTime;
+    requires_internal_blueprint: Schema.Attribute.Boolean &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    rules_payload: Schema.Attribute.JSON &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    slug: Schema.Attribute.UID<'name'> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    system_context: Schema.Attribute.Text &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1209,7 +1354,9 @@ declare module '@strapi/strapi' {
       'admin::user': AdminUser;
       'api::competitor-audit.competitor-audit': ApiCompetitorAuditCompetitorAudit;
       'api::compliance-audit.compliance-audit': ApiComplianceAuditComplianceAudit;
+      'api::content-brief.content-brief': ApiContentBriefContentBrief;
       'api::lead-form.lead-form': ApiLeadFormLeadForm;
+      'api::page-type-rule.page-type-rule': ApiPageTypeRulePageTypeRule;
       'api::website-audit.website-audit': ApiWebsiteAuditWebsiteAudit;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
