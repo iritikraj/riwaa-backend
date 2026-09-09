@@ -660,6 +660,43 @@ export interface ApiContentBriefContentBrief
   };
 }
 
+export interface ApiDeveloperAgentDeveloperAgent
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'developer_agents';
+  info: {
+    displayName: 'Developer Agents';
+    pluralName: 'developer-agents';
+    singularName: 'developer-agent';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    agent_bio: Schema.Attribute.Text;
+    agent_data: Schema.Attribute.JSON;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    developer_name: Schema.Attribute.String;
+    developer_profile: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::developer-agent.developer-agent'
+    > &
+      Schema.Attribute.Private;
+    projects_list: Schema.Attribute.JSON;
+    publishedAt: Schema.Attribute.DateTime;
+    report_status: Schema.Attribute.Enumeration<
+      ['processing', 'draft', 'published']
+    >;
+    slug: Schema.Attribute.UID;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiLeadFormLeadForm extends Struct.CollectionTypeSchema {
   collectionName: 'lead_forms';
   info: {
@@ -1355,6 +1392,7 @@ declare module '@strapi/strapi' {
       'api::competitor-audit.competitor-audit': ApiCompetitorAuditCompetitorAudit;
       'api::compliance-audit.compliance-audit': ApiComplianceAuditComplianceAudit;
       'api::content-brief.content-brief': ApiContentBriefContentBrief;
+      'api::developer-agent.developer-agent': ApiDeveloperAgentDeveloperAgent;
       'api::lead-form.lead-form': ApiLeadFormLeadForm;
       'api::page-type-rule.page-type-rule': ApiPageTypeRulePageTypeRule;
       'api::website-audit.website-audit': ApiWebsiteAuditWebsiteAudit;
