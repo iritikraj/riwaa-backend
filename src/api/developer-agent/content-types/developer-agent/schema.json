@@ -36,6 +36,9 @@
     },
     "agent_bio": {
       "type": "text"
+    },
+    "hero_banner": {
+      "type": "text"
     }
   }
 }

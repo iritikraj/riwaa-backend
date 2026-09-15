@@ -679,6 +679,7 @@ export interface ApiDeveloperAgentDeveloperAgent
       Schema.Attribute.Private;
     developer_name: Schema.Attribute.String;
     developer_profile: Schema.Attribute.Text;
+    hero_banner: Schema.Attribute.Text;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
