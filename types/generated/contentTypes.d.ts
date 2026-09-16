@@ -677,6 +677,7 @@ export interface ApiDeveloperAgentDeveloperAgent
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    developer_logo: Schema.Attribute.Text;
     developer_name: Schema.Attribute.String;
     developer_profile: Schema.Attribute.Text;
     hero_banner: Schema.Attribute.Text;

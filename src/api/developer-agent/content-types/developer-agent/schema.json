@@ -39,6 +39,9 @@
     },
     "hero_banner": {
       "type": "text"
+    },
+    "developer_logo": {
+      "type": "text"
     }
   }
 }
