@@ -660,6 +660,105 @@ export interface ApiContentBriefContentBrief
   };
 }
 
+export interface ApiCreativeAgentCreativeAgent
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'creative_agents';
+  info: {
+    displayName: 'Creative Agent';
+    pluralName: 'creative-agents';
+    singularName: 'creative-agent';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    ai_copy: Schema.Attribute.JSON &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    background_image: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    brand_name: Schema.Attribute.String &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    campaign_data: Schema.Attribute.JSON &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    category: Schema.Attribute.Enumeration<
+      ['real_estate', 'ecommerce', 'saas']
+    > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    generated_creatives: Schema.Attribute.JSON &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::creative-agent.creative-agent'
+    >;
+    logo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    publishedAt: Schema.Attribute.DateTime;
+    report_status: Schema.Attribute.Enumeration<
+      ['processing', 'draft', 'published', 'failed']
+    > &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    slug: Schema.Attribute.UID<'brand_name'> &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    usps: Schema.Attribute.JSON &
+      Schema.Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+  };
+}
+
 export interface ApiDeveloperAgentDeveloperAgent
   extends Struct.CollectionTypeSchema {
   collectionName: 'developer_agents';
@@ -1394,6 +1493,7 @@ declare module '@strapi/strapi' {
       'api::competitor-audit.competitor-audit': ApiCompetitorAuditCompetitorAudit;
       'api::compliance-audit.compliance-audit': ApiComplianceAuditComplianceAudit;
       'api::content-brief.content-brief': ApiContentBriefContentBrief;
+      'api::creative-agent.creative-agent': ApiCreativeAgentCreativeAgent;
       'api::developer-agent.developer-agent': ApiDeveloperAgentDeveloperAgent;
       'api::lead-form.lead-form': ApiLeadFormLeadForm;
       'api::page-type-rule.page-type-rule': ApiPageTypeRulePageTypeRule;
