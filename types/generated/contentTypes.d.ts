@@ -683,14 +683,6 @@ export interface ApiCreativeAgentCreativeAgent
           localized: true;
         };
       }>;
-    background_image: Schema.Attribute.Media<
-      'images' | 'files' | 'videos' | 'audios'
-    > &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     background_images: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true
@@ -734,12 +726,6 @@ export interface ApiCreativeAgentCreativeAgent
       'oneToMany',
       'api::creative-agent.creative-agent'
     >;
-    logo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'> &
-      Schema.Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
     logo_dark: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios'
     > &
