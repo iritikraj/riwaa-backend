@@ -870,6 +870,163 @@ export interface ApiLeadFormLeadForm extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiMetaAdsReportMetaAdsReport
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'meta_ads_reports';
+  info: {
+    displayName: 'Meta Ads Report';
+    pluralName: 'meta-ads-reports';
+    singularName: 'meta-ads-report';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    client_name: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    date_preset: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::meta-ads-report.meta-ads-report'
+    > &
+      Schema.Attribute.Private;
+    markdown_content: Schema.Attribute.RichText;
+    metrics: Schema.Attribute.JSON;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiMetaAgentSettingMetaAgentSetting
+  extends Struct.SingleTypeSchema {
+  collectionName: 'meta_agent_settings';
+  info: {
+    displayName: 'Meta Agent Settings';
+    pluralName: 'meta-agent-settings';
+    singularName: 'meta-agent-setting';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    disallow_pause_actions: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<false>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::meta-agent-setting.meta-agent-setting'
+    > &
+      Schema.Attribute.Private;
+    max_actions_per_run: Schema.Attribute.Integer &
+      Schema.Attribute.DefaultTo<10>;
+    max_budget_change_pct: Schema.Attribute.Decimal &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<20>;
+    min_impressions_threshold: Schema.Attribute.Decimal &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<1000>;
+    min_spend_threshold: Schema.Attribute.Decimal &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<50>;
+    protected_campaign_ids: Schema.Attribute.JSON;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiMetaAuditLogMetaAuditLog
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'meta_audit_logs';
+  info: {
+    displayName: 'Meta Audit Log';
+    pluralName: 'meta-audit-logs';
+    singularName: 'meta-audit-log';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    details: Schema.Attribute.JSON & Schema.Attribute.Required;
+    event_type: Schema.Attribute.String & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::meta-audit-log.meta-audit-log'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiMetaRecommendationMetaRecommendation
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'meta_recommendations';
+  info: {
+    displayName: 'Meta Recommendations';
+    pluralName: 'meta-recommendations';
+    singularName: 'meta-recommendation';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    action: Schema.Attribute.Enumeration<
+      [
+        'increase_budget',
+        'decrease_budget',
+        'increase_bid',
+        'decrease_bid',
+        'pause',
+        'no_action_but_watch',
+      ]
+    > &
+      Schema.Attribute.Required;
+    change_pct: Schema.Attribute.Decimal;
+    confidence: Schema.Attribute.Enumeration<['low', 'medium', 'high']>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    level: Schema.Attribute.Enumeration<['campaign', 'adset', 'ad']> &
+      Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::meta-recommendation.meta-recommendation'
+    > &
+      Schema.Attribute.Private;
+    object_id: Schema.Attribute.String & Schema.Attribute.Required;
+    object_name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    rationale: Schema.Attribute.Text;
+    resolution_note: Schema.Attribute.Text;
+    status: Schema.Attribute.Enumeration<
+      ['pending', 'approved', 'rejected', 'executed', 'failed']
+    > &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'pending'>;
+    supporting_metrics: Schema.Attribute.JSON;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiPageTypeRulePageTypeRule
   extends Struct.CollectionTypeSchema {
   collectionName: 'page_type_rules';
@@ -1446,7 +1603,6 @@ export interface PluginUsersPermissionsUser
   };
   options: {
     draftAndPublish: false;
-    timestamps: true;
   };
   attributes: {
     blocked: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
@@ -1460,6 +1616,7 @@ export interface PluginUsersPermissionsUser
       Schema.Attribute.SetMinMaxLength<{
         minLength: 6;
       }>;
+    isAdmin: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -1507,6 +1664,10 @@ declare module '@strapi/strapi' {
       'api::creative-agent.creative-agent': ApiCreativeAgentCreativeAgent;
       'api::developer-agent.developer-agent': ApiDeveloperAgentDeveloperAgent;
       'api::lead-form.lead-form': ApiLeadFormLeadForm;
+      'api::meta-ads-report.meta-ads-report': ApiMetaAdsReportMetaAdsReport;
+      'api::meta-agent-setting.meta-agent-setting': ApiMetaAgentSettingMetaAgentSetting;
+      'api::meta-audit-log.meta-audit-log': ApiMetaAuditLogMetaAuditLog;
+      'api::meta-recommendation.meta-recommendation': ApiMetaRecommendationMetaRecommendation;
       'api::page-type-rule.page-type-rule': ApiPageTypeRulePageTypeRule;
       'api::website-audit.website-audit': ApiWebsiteAuditWebsiteAudit;
       'plugin::content-releases.release': PluginContentReleasesRelease;

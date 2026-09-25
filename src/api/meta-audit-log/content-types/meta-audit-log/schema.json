@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "meta_audit_logs",
+  "info": {
+    "singularName": "meta-audit-log",
+    "pluralName": "meta-audit-logs",
+    "displayName": "Meta Audit Log"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "event_type": {
+      "type": "string",
+      "required": true
+    },
+    "details": {
+      "type": "json",
+      "required": true
+    }
+  }
+}

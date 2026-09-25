@@ -1,0 +1,42 @@
+{
+  "kind": "singleType",
+  "collectionName": "meta_agent_settings",
+  "info": {
+    "singularName": "meta-agent-setting",
+    "pluralName": "meta-agent-settings",
+    "displayName": "Meta Agent Settings"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "max_budget_change_pct": {
+      "type": "decimal",
+      "required": true,
+      "default": 20
+    },
+    "min_spend_threshold": {
+      "type": "decimal",
+      "required": true,
+      "default": 50
+    },
+    "min_impressions_threshold": {
+      "type": "decimal",
+      "required": true,
+      "default": 1000
+    },
+    "disallow_pause_actions": {
+      "type": "boolean",
+      "default": false
+    },
+    "protected_campaign_ids": {
+      "type": "json",
+      "description": "Array of strings. IDs the agent must never touch."
+    },
+    "max_actions_per_run": {
+      "type": "integer",
+      "default": 10
+    }
+  }
+}

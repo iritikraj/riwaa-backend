@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "meta_ads_reports",
+  "info": {
+    "singularName": "meta-ads-report",
+    "pluralName": "meta-ads-reports",
+    "displayName": "Meta Ads Report"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "client_name": {
+      "type": "string"
+    },
+    "date_preset": {
+      "type": "string"
+    },
+    "metrics": {
+      "type": "json"
+    },
+    "markdown_content": {
+      "type": "richtext"
+    }
+  }
+}

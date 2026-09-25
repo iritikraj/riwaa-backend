@@ -1,0 +1,75 @@
+{
+  "kind": "collectionType",
+  "collectionName": "meta_recommendations",
+  "info": {
+    "singularName": "meta-recommendation",
+    "pluralName": "meta-recommendations",
+    "displayName": "Meta Recommendations"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "object_id": {
+      "type": "string",
+      "required": true
+    },
+    "object_name": {
+      "type": "string"
+    },
+    "level": {
+      "type": "enumeration",
+      "enum": [
+        "campaign",
+        "adset",
+        "ad"
+      ],
+      "required": true
+    },
+    "action": {
+      "type": "enumeration",
+      "enum": [
+        "increase_budget",
+        "decrease_budget",
+        "increase_bid",
+        "decrease_bid",
+        "pause",
+        "no_action_but_watch"
+      ],
+      "required": true
+    },
+    "change_pct": {
+      "type": "decimal"
+    },
+    "rationale": {
+      "type": "text"
+    },
+    "confidence": {
+      "type": "enumeration",
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "supporting_metrics": {
+      "type": "json"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "pending",
+        "approved",
+        "rejected",
+        "executed",
+        "failed"
+      ],
+      "default": "pending",
+      "required": true
+    },
+    "resolution_note": {
+      "type": "text"
+    }
+  }
+}
