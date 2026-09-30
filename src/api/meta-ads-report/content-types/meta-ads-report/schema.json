@@ -22,6 +22,11 @@
     },
     "markdown_content": {
       "type": "richtext"
+    },
+    "meta_account": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::meta-account.meta-account"
     }
   }
 }

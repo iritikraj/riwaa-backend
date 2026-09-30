@@ -1,0 +1,38 @@
+{
+  "kind": "collectionType",
+  "collectionName": "meta_accounts",
+  "info": {
+    "singularName": "meta-account",
+    "pluralName": "meta-accounts",
+    "displayName": "Meta Account"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "ad_account_id": {
+      "type": "uid"
+    },
+    "page_id": {
+      "type": "string"
+    },
+    "pixel_id": {
+      "type": "string"
+    },
+    "access_token": {
+      "type": "text"
+    },
+    "is_active": {
+      "type": "boolean"
+    },
+    "assigned_users": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "admin::user"
+    }
+  }
+}

@@ -870,6 +870,40 @@ export interface ApiLeadFormLeadForm extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiMetaAccountMetaAccount extends Struct.CollectionTypeSchema {
+  collectionName: 'meta_accounts';
+  info: {
+    displayName: 'Meta Account';
+    pluralName: 'meta-accounts';
+    singularName: 'meta-account';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    access_token: Schema.Attribute.Text;
+    ad_account_id: Schema.Attribute.UID;
+    assigned_users: Schema.Attribute.Relation<'oneToMany', 'admin::user'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    is_active: Schema.Attribute.Boolean;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::meta-account.meta-account'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    page_id: Schema.Attribute.String;
+    pixel_id: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiMetaAdsReportMetaAdsReport
   extends Struct.CollectionTypeSchema {
   collectionName: 'meta_ads_reports';
@@ -894,6 +928,10 @@ export interface ApiMetaAdsReportMetaAdsReport
     > &
       Schema.Attribute.Private;
     markdown_content: Schema.Attribute.RichText;
+    meta_account: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::meta-account.meta-account'
+    >;
     metrics: Schema.Attribute.JSON;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
@@ -903,7 +941,7 @@ export interface ApiMetaAdsReportMetaAdsReport
 }
 
 export interface ApiMetaAgentSettingMetaAgentSetting
-  extends Struct.SingleTypeSchema {
+  extends Struct.CollectionTypeSchema {
   collectionName: 'meta_agent_settings';
   info: {
     displayName: 'Meta Agent Settings';
@@ -930,6 +968,10 @@ export interface ApiMetaAgentSettingMetaAgentSetting
     max_budget_change_pct: Schema.Attribute.Decimal &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<20>;
+    meta_account: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::meta-account.meta-account'
+    >;
     min_impressions_threshold: Schema.Attribute.Decimal &
       Schema.Attribute.Required &
       Schema.Attribute.DefaultTo<1000>;
@@ -967,7 +1009,15 @@ export interface ApiMetaAuditLogMetaAuditLog
       'api::meta-audit-log.meta-audit-log'
     > &
       Schema.Attribute.Private;
+    meta_account: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::meta-account.meta-account'
+    >;
     publishedAt: Schema.Attribute.DateTime;
+    triggered_by: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1010,6 +1060,10 @@ export interface ApiMetaRecommendationMetaRecommendation
       'api::meta-recommendation.meta-recommendation'
     > &
       Schema.Attribute.Private;
+    meta_account: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::meta-account.meta-account'
+    >;
     object_id: Schema.Attribute.String & Schema.Attribute.Required;
     object_name: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
@@ -1664,6 +1718,7 @@ declare module '@strapi/strapi' {
       'api::creative-agent.creative-agent': ApiCreativeAgentCreativeAgent;
       'api::developer-agent.developer-agent': ApiDeveloperAgentDeveloperAgent;
       'api::lead-form.lead-form': ApiLeadFormLeadForm;
+      'api::meta-account.meta-account': ApiMetaAccountMetaAccount;
       'api::meta-ads-report.meta-ads-report': ApiMetaAdsReportMetaAdsReport;
       'api::meta-agent-setting.meta-agent-setting': ApiMetaAgentSettingMetaAgentSetting;
       'api::meta-audit-log.meta-audit-log': ApiMetaAuditLogMetaAuditLog;

@@ -1,5 +1,5 @@
 {
-  "kind": "singleType",
+  "kind": "collectionType",
   "collectionName": "meta_agent_settings",
   "info": {
     "singularName": "meta-agent-setting",
@@ -37,6 +37,11 @@
     "max_actions_per_run": {
       "type": "integer",
       "default": 10
+    },
+    "meta_account": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::meta-account.meta-account"
     }
   }
 }

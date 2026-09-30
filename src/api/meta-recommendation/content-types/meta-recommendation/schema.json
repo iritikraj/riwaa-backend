@@ -70,6 +70,11 @@
     },
     "resolution_note": {
       "type": "text"
+    },
+    "meta_account": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::meta-account.meta-account"
     }
   }
 }

@@ -18,6 +18,16 @@
     "details": {
       "type": "json",
       "required": true
+    },
+    "meta_account": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::meta-account.meta-account"
+    },
+    "triggered_by": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
     }
   }
 }
