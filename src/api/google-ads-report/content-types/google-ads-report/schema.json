@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "google_ads_reports",
+  "info": {
+    "singularName": "google-ads-report",
+    "pluralName": "google-ads-reports",
+    "displayName": "Google Ads Report"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "googleCampaignId": {
+      "type": "string"
+    },
+    "date": {
+      "type": "date"
+    },
+    "optimizationScore": {
+      "type": "decimal"
+    },
+    "spend": {
+      "type": "decimal"
+    },
+    "clicks": {
+      "type": "integer"
+    },
+    "impressions": {
+      "type": "integer"
+    },
+    "conversions": {
+      "type": "decimal"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    }
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "kind": "collectionType",
+  "collectionName": "google_accounts",
+  "info": {
+    "singularName": "google-account",
+    "pluralName": "google-accounts",
+    "displayName": "Google Account"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "accountName": {
+      "type": "string",
+      "required": true
+    },
+    "loginCustomerId": {
+      "type": "string"
+    },
+    "customerId": {
+      "type": "string"
+    },
+    "refreshToken": {
+      "type": "text"
+    },
+    "accountState": {
+      "type": "enumeration",
+      "default": "active",
+      "enum": [
+        "active",
+        "disconnected",
+        "auth_error"
+      ]
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    }
+  }
+}

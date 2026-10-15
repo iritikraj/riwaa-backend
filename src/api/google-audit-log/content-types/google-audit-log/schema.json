@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "google_audit_logs",
+  "info": {
+    "singularName": "google-audit-log",
+    "pluralName": "google-audit-logs",
+    "displayName": "Google Audit Log"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "actionType": {
+      "type": "enumeration",
+      "enum": [
+        "campaign_launched",
+        "recommendation_dismissed",
+        "policy_violation_flagged",
+        "budget_adjusted",
+        "blueprint_generated",
+        "keyword_research_completed"
+      ]
+    },
+    "details": {
+      "type": "json"
+    },
+    "outcome": {
+      "type": "enumeration",
+      "enum": [
+        "success",
+        "error",
+        "warning"
+      ]
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "customerId": {
+      "type": "string"
+    }
+  }
+}

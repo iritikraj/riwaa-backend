@@ -1,0 +1,47 @@
+{
+  "kind": "collectionType",
+  "collectionName": "google_campaign_blueprints",
+  "info": {
+    "singularName": "google-campaign-blueprint",
+    "pluralName": "google-campaign-blueprints",
+    "displayName": "Google Campaign Blueprint"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "campaignName": {
+      "type": "string"
+    },
+    "brief": {
+      "type": "text"
+    },
+    "blueprintData": {
+      "type": "json"
+    },
+    "approvalState": {
+      "type": "enumeration",
+      "required": true,
+      "default": "generating",
+      "enum": [
+        "generating",
+        "pending_approval",
+        "approved",
+        "live",
+        "failed"
+      ]
+    },
+    "googleCampaignId": {
+      "type": "string"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user"
+    },
+    "customerId": {
+      "type": "string"
+    }
+  }
+}

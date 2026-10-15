@@ -809,6 +809,209 @@ export interface ApiDeveloperAgentDeveloperAgent
   };
 }
 
+export interface ApiGoogleAccountGoogleAccount
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'google_accounts';
+  info: {
+    displayName: 'Google Account';
+    pluralName: 'google-accounts';
+    singularName: 'google-account';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    accountName: Schema.Attribute.String & Schema.Attribute.Required;
+    accountState: Schema.Attribute.Enumeration<
+      ['active', 'disconnected', 'auth_error']
+    > &
+      Schema.Attribute.DefaultTo<'active'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    customerId: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::google-account.google-account'
+    > &
+      Schema.Attribute.Private;
+    loginCustomerId: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    refreshToken: Schema.Attribute.Text;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
+export interface ApiGoogleAdsReportGoogleAdsReport
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'google_ads_reports';
+  info: {
+    displayName: 'Google Ads Report';
+    pluralName: 'google-ads-reports';
+    singularName: 'google-ads-report';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    clicks: Schema.Attribute.Integer;
+    conversions: Schema.Attribute.Decimal;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    date: Schema.Attribute.Date;
+    googleCampaignId: Schema.Attribute.String;
+    impressions: Schema.Attribute.Integer;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::google-ads-report.google-ads-report'
+    > &
+      Schema.Attribute.Private;
+    optimizationScore: Schema.Attribute.Decimal;
+    publishedAt: Schema.Attribute.DateTime;
+    spend: Schema.Attribute.Decimal;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
+export interface ApiGoogleAgentSettingGoogleAgentSetting
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'google_agent_settings';
+  info: {
+    displayName: 'Google Agent Setting';
+    pluralName: 'google-agent-settings';
+    singularName: 'google-agent-setting';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    alertEmails: Schema.Attribute.JSON;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::google-agent-setting.google-agent-setting'
+    > &
+      Schema.Attribute.Private;
+    maxDailyBudgetLimit: Schema.Attribute.Decimal;
+    optimizationGatekeeper: Schema.Attribute.Boolean &
+      Schema.Attribute.DefaultTo<true>;
+    publishedAt: Schema.Attribute.DateTime;
+    targetLocations: Schema.Attribute.JSON;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user: Schema.Attribute.Relation<
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
+export interface ApiGoogleAuditLogGoogleAuditLog
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'google_audit_logs';
+  info: {
+    displayName: 'Google Audit Log';
+    pluralName: 'google-audit-logs';
+    singularName: 'google-audit-log';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    actionType: Schema.Attribute.Enumeration<
+      [
+        'campaign_launched',
+        'recommendation_dismissed',
+        'policy_violation_flagged',
+        'budget_adjusted',
+        'blueprint_generated',
+        'keyword_research_completed',
+      ]
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    customerId: Schema.Attribute.String;
+    details: Schema.Attribute.JSON;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::google-audit-log.google-audit-log'
+    > &
+      Schema.Attribute.Private;
+    outcome: Schema.Attribute.Enumeration<['success', 'error', 'warning']>;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
+export interface ApiGoogleCampaignBlueprintGoogleCampaignBlueprint
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'google_campaign_blueprints';
+  info: {
+    displayName: 'Google Campaign Blueprint';
+    pluralName: 'google-campaign-blueprints';
+    singularName: 'google-campaign-blueprint';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    approvalState: Schema.Attribute.Enumeration<
+      ['generating', 'pending_approval', 'approved', 'live', 'failed']
+    > &
+      Schema.Attribute.Required &
+      Schema.Attribute.DefaultTo<'generating'>;
+    blueprintData: Schema.Attribute.JSON;
+    brief: Schema.Attribute.Text;
+    campaignName: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    customerId: Schema.Attribute.String;
+    googleCampaignId: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::google-campaign-blueprint.google-campaign-blueprint'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    user: Schema.Attribute.Relation<
+      'manyToOne',
+      'plugin::users-permissions.user'
+    >;
+  };
+}
+
 export interface ApiLeadFormLeadForm extends Struct.CollectionTypeSchema {
   collectionName: 'lead_forms';
   info: {
@@ -1717,6 +1920,11 @@ declare module '@strapi/strapi' {
       'api::content-brief.content-brief': ApiContentBriefContentBrief;
       'api::creative-agent.creative-agent': ApiCreativeAgentCreativeAgent;
       'api::developer-agent.developer-agent': ApiDeveloperAgentDeveloperAgent;
+      'api::google-account.google-account': ApiGoogleAccountGoogleAccount;
+      'api::google-ads-report.google-ads-report': ApiGoogleAdsReportGoogleAdsReport;
+      'api::google-agent-setting.google-agent-setting': ApiGoogleAgentSettingGoogleAgentSetting;
+      'api::google-audit-log.google-audit-log': ApiGoogleAuditLogGoogleAuditLog;
+      'api::google-campaign-blueprint.google-campaign-blueprint': ApiGoogleCampaignBlueprintGoogleCampaignBlueprint;
       'api::lead-form.lead-form': ApiLeadFormLeadForm;
       'api::meta-account.meta-account': ApiMetaAccountMetaAccount;
       'api::meta-ads-report.meta-ads-report': ApiMetaAdsReportMetaAdsReport;

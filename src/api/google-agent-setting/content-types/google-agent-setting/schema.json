@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "google_agent_settings",
+  "info": {
+    "singularName": "google-agent-setting",
+    "pluralName": "google-agent-settings",
+    "displayName": "Google Agent Setting"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "maxDailyBudgetLimit": {
+      "type": "decimal"
+    },
+    "optimizationGatekeeper": {
+      "type": "boolean",
+      "default": true
+    },
+    "targetLocations": {
+      "type": "json"
+    },
+    "alertEmails": {
+      "type": "json"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user"
+    }
+  }
+}
